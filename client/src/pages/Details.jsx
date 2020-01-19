@@ -66,7 +66,7 @@ class Details extends React.Component {
               <img
                 id="remoteimg"
                 src={this.state.imageUrl}
-                alt="Kuldip Patel"
+                alt="image"
                 style={{ width: '190px', height: '190px', margin: '7px' }}
               />
             </div>
@@ -96,7 +96,7 @@ class Details extends React.Component {
           </div>
         ) : (
           <div>
-            <h1>{this.state.accounts}</h1>
+            <h2>Account Address: {this.state.accounts}</h2>
             <Form onSubmit={this.getDetails}>
               <Form.Label>Enter Unique Key of Person</Form.Label>
               <Form.Control
