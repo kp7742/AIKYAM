@@ -3,6 +3,8 @@ import Identity from '../contracts/Identity.json'
 import getWeb3 from '../getWeb3'
 import { Form, Button } from 'react-bootstrap'
 import '../details.scss'
+const IPFS = require("ipfs-api")
+const ipfs = new IPFS({ host: "ipfs.infura.io", port: 5001, protocol: "https" })
 
 class Details extends React.Component {
   state = {
@@ -48,7 +50,13 @@ class Details extends React.Component {
     const data = await contract.methods
       .getPersonDetails(this.state.uniqueKey)
       .call({ from: accounts[0] })
-    this.setState({ data, dataExist: true })
+    this.setState({ data, dataExist: true }, async function(){
+		ipfs.on('ready', () => {
+			ipfs.files.cat(this.state.data['6'], function (err, file) {
+				document.getElementById("remoteimg").src= "data:image/png;base64," + file.toString("base64");
+			})
+		})
+	})
     console.log(data)
   }
   render() {
@@ -58,6 +66,7 @@ class Details extends React.Component {
           <div className="card">
             <div className="card-avatar">
               <img
+				id="remoteimg"
                 src={
                   'https://avatars0.githubusercontent.com/u/11852869?s=460&v=4'
                 }

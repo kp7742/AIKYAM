@@ -22,9 +22,7 @@ class Register extends Component {
       bloodgroup: "",
       mobile: 0,
       unkey: null,
-      ipfsHash: null,
-      formIPFS: "",
-      formAddress: ""
+      ipfsHash: null
     }
   }
 
