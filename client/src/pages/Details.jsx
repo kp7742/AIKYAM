@@ -32,7 +32,6 @@ class Details extends React.Component {
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance })
-      console.log(accounts)
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -45,8 +44,7 @@ class Details extends React.Component {
   getDetails = async e => {
     e.preventDefault()
     const { accounts, contract } = this.state
-    console.log(this.state.web3)
-    console.log(this.state.uniqueKey)
+
 
     let imageUrl = ''
     const that = this
@@ -55,8 +53,6 @@ class Details extends React.Component {
       .call({ from: accounts[0] })
     this.setState({ data, dataExist: true })
     ipfs.files.cat(this.state.data['6'], function(err, file) {
-      console.log(file)
-      console.log(file.toString('base64'))
       imageUrl = 'data:image/png;base64,' + file.toString('base64')
       that.setState({ imageUrl })
     })
