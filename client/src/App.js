@@ -144,7 +144,7 @@ class App extends Component {
             <Form.Control
               type="number"
               value={this.state.mobile}
-              placeholder="Blood Group"
+              placeholder="Mobile"
               onChange={this.onChange}
               name="mobile"
               required
