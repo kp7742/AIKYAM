@@ -81,11 +81,6 @@ class App extends Component {
     return (
       <div className="App">
         <h1>{this.state.accounts[0]}</h1>
-        {
-          this.state.unkey ? (
-          <h2>{this.state.unkey}</h2>
-          ): ""
-        }
         <Form onSubmit={this.addMember}>
           <Form.Group>
           <Form.Label>First Name</Form.Label>
@@ -154,6 +149,11 @@ class App extends Component {
             </Button>
           </Form.Group>
         </Form>
+        {
+          this.state.unkey ? (
+          <h2>{this.state.unkey}</h2>
+          ): ""
+        }
       </div>
     )
   }
