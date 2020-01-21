@@ -20,7 +20,7 @@ AIKYAM provides decentralized way to securely store unique identification of Per
 - IPFS (InterPlanetary File System)
 - React 
 - Metamask browser extension
-- React
+
 
 ## Running it locally
   1. Install nodejs and ganache (for local blockchain network) if you haven't
