@@ -18,7 +18,7 @@ class Register extends Component {
       lname: "",
       dob: "",
       addr: "",
-      gender: "",
+      gender: "male",
       bloodgroup: "",
       mobile: 0,
       unkey: null,
@@ -29,23 +29,23 @@ class Register extends Component {
   // * Loads Blockchain on Network
   componentDidMount = async () => {
     try {
-      // Get network provider and web3 instance.
+      // *Get network provider and web3 instance.
       const web3 = await getWeb3()
-      // Use web3 to get the user's accounts.
+      // *Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts()
-      // Get the contract instance.
+      // *Get the contract instance.
       const networkId = await web3.eth.net.getId()
       const deployedNetwork = Identity.networks[networkId]
       const instance = new web3.eth.Contract(
         Identity.abi,
         deployedNetwork && deployedNetwork.address
       )
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
+      // *Set web3, accounts, and contract to the state, and then proceed with an
+      // *example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance })
       console.log(accounts)
     } catch (error) {
-      // Catch any errors for any of the above operations.
+      // *Catch any errors for any of the above operations.
       alert(
         `Failed to load web3, accounts, or contract. Check console for details.`
       )
@@ -57,12 +57,12 @@ class Register extends Component {
   onIPFSSubmit = async event => {
     event.preventDefault()
 
-    //bring in user's metamask account address
+    // * bring in user's metamask account address
     const accounts = this.state.accounts
 
     console.log("Sending from Metamask account: " + accounts[0])
 
-    //save document to IPFS,return its hash#, and set hash# to state
+    // * save document to IPFS,return its hash#, and set hash# to state
     //https://github.com/ipfs/interface-ipfs-core/blob/master/SPEC/FILES.md#add
 
     await ipfs.add(this.state.buffer, (err, ipfsHash) => {
@@ -71,7 +71,7 @@ class Register extends Component {
       this.setState({ ipfsHash: ipfsHash[0].hash }, async function() {
         const testData = await this.state.contract.methods
           .addPersonDetails(
-            this.state.fname,
+            this.state.fname + ' ' + this.state.lname,
             this.state.dob,
             this.state.addr,
             this.state.gender,
@@ -85,6 +85,7 @@ class Register extends Component {
           .uniqueKey()
           .call({ from: accounts[0] })
           .then(function(result) {
+            console.log(result)
             testit = result
           })
           .then(() => {
@@ -217,6 +218,7 @@ class Register extends Component {
               placeholder="Mobile"
               onChange={this.onChange}
               name="mobile"
+              maxLength="10"
               required
             />
             <Form.Label>Choose Image</Form.Label>

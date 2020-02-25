@@ -1,9 +1,11 @@
 import React from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+
 import Register from "./pages/Register"
 import Details from "./pages/Details"
+import Home from './pages/Home'
 // import "bootstrap/dist/css/bootstrap.min.css"
-// import "./App.css"
+import "./App.css"
 
 class App extends React.Component {
   render() {
@@ -11,6 +13,9 @@ class App extends React.Component {
       <div className="app">
         <Router>
           <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
             <Route path="/register">
               <Register />
             </Route>
