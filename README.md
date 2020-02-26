@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 ## What is AIKYAM?
-AIKYAM provides decentralized way to securely store unique identification of Person through Blockchain Technology. AIKYAM is Sanskrit Word which means Identity, Sameness or Oneness.
+AIKYAM provides a decentralized way to securely store a unique identification of Person through Blockchain Technology. AIKYAM is Sanskrit Word,which means Identity, Sameness or Oneness.
 
 ## Features
 - Generate Unique Identification for Person
@@ -38,7 +38,7 @@ AIKYAM provides decentralized way to securely store unique identification of Per
    truffle compile
    truffle migrate
   ```
-  5. Running client on localhost:3000
+  5. Running the client on localhost:3000
   ```
    cd client
    npm run start
